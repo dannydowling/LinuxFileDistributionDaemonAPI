@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="MultiSourceFileCopy.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MultiSourceFileCopy"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Button Content="Button" Height="114" Margin="56,876,0,0" VerticalAlignment="Top" Width="159" Click="Add_Source_1"/>
+        <Button Content="Button" Height="114" Margin="220,876,0,0" VerticalAlignment="Top" Width="141" Click="Add_Source_2"/>
+        <Button Content="Button" Height="114" Margin="366,876,0,0" VerticalAlignment="Top" Width="170" RenderTransformOrigin="0.884,0.559" Click="Add_Source_3"/>
+        <Button Content="Button" Height="124" Margin="541,876,0,0" VerticalAlignment="Top" Width="159" Click="Add_Source_4"/>
+        <Button Content="Button" Height="124" Margin="705,876,0,0" VerticalAlignment="Top" Width="188" Click="Add_Source_5"/>
+        <Button Content="Button" Height="114" Margin="898,876,0,0" VerticalAlignment="Top" Width="177" Click="Add_Source_6"/>
+        <Button Content="Button" Height="114" Margin="1081,876,0,0" VerticalAlignment="Top" Width="173" RenderTransformOrigin="1.748,0.559" Click="Add_Source_7"/>
+        <Button Content="Button" Height="114" Margin="1336,876,0,0" VerticalAlignment="Top" Width="164" Click="Exit_Button"/>
+        <ListBox HorizontalAlignment="Left" Height="742" Margin="10,79,0,0" VerticalAlignment="Top" Width="690"/>
+        <ListBox HorizontalAlignment="Left" Height="741" Margin="856,81,0,0" VerticalAlignment="Top" Width="634"/>
+        <Button Content="Button" Height="109" Margin="706,304,0,0" VerticalAlignment="Top" Width="145" Click="Start_Copy"/>
+        <Button Content="Button" Height="105" Margin="705,451,0,0" VerticalAlignment="Top" Width="146" Click="Remove_Files"/>
+        <Button Content="Button" Height="90" Margin="705,619,0,0" VerticalAlignment="Top" Width="151" Click="Add_Files"/>
+
+    </Grid>
+</Page>

@@ -1,0 +1,7 @@
+The idea of this text file is to have the user list IP addresses for remote locations.
+The app uses the FXP protocol to send the files first to one machine and then through FXP.
+Initiates a transfer from that remote machine to the next computers in the block. Aggregating the file transfer speed as 
+more computers recieve the information.
+
+
+
