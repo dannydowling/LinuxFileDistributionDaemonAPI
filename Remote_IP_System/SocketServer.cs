@@ -1,11 +1,11 @@
-﻿using System;
+﻿using MultiSourceFileCopy;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using Windows.Services.Maps;
 
-namespace SocketServer
+namespace SocketS
 {
     // State object for reading client data asynchronously  
     public class StateObject
@@ -23,14 +23,14 @@ namespace SocketServer
         public Socket workSocket = null;
     }
 
-    public class AsynchronousSocketListener
+    public class SocketServer
     {
         // Thread signal.  
         public static ManualResetEvent allDone = new ManualResetEvent(false);
-        IPHostEntry HostInfo_IP { get; set; }
-        IPAddress ipAddress { get; set; }
+        static IPHostEntry HostInfo_IP { get; set; }
+        static IPAddress ipAddress { get; set; }
 
-        private AsynchronousSocketListener()
+        public static void StartServer()
         {
             // Establish the local endpoint for the socket.  
             // The DNS name of the computer  
@@ -66,7 +66,7 @@ namespace SocketServer
                     allDone.Reset();
 
                     // Start an asynchronous socket to listen for connections.  
-                    Console.WriteLine("Waiting for a connection...");
+                    Debug_Output.sb.AppendLine("Waiting for connection...");    
                     listener.BeginAccept(
                         new AsyncCallback(AcceptCallback),
                         listener);
@@ -78,12 +78,10 @@ namespace SocketServer
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                Debug_Output.sb.AppendLine(e.Message.ToString());                
             }
 
-            Console.WriteLine("\nPress ENTER to continue...");
-            Console.Read();
-
+         
         }
 
         public static void AcceptCallback(IAsyncResult ar)
@@ -104,11 +102,11 @@ namespace SocketServer
             }
             catch (NullReferenceException e)
             {
-                Console.WriteLine(e.Message.ToString());
+                Debug_Output.sb.AppendLine(e.Message.ToString());
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message.ToString());
+                Debug_Output.sb.AppendLine(e.Message.ToString());
             }
 
         }
@@ -139,8 +137,7 @@ namespace SocketServer
                 {
                     // All the data has been read from the
                     // client. Display it on the console.  
-                    Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
-                        content.Length, content);
+                    Debug_Output.sb.AppendLine(($"Read {0} bytes from socket. Data : {1}", content.Length, content).ToString());
                     // Echo the data back to the client.  
                     Send(handler, content);
                 }
@@ -172,7 +169,7 @@ namespace SocketServer
 
                 // Complete sending the data to the remote device.  
                 int bytesSent = handler.EndSend(ar);
-                Console.WriteLine("Sent {0} bytes to client.", bytesSent);
+                Debug_Output.sb.AppendLine(($"Sent {0} bytes to client.", bytesSent).ToString());
 
                 handler.Shutdown(SocketShutdown.Both);
                 handler.Close();
@@ -180,7 +177,7 @@ namespace SocketServer
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                Debug_Output.sb.AppendLine(e.Message.ToString());
             }
         }
     }
