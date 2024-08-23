@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -30,7 +31,6 @@ namespace MultiSourceFileCopy
     {
 
         public static List<string> sourceFiles;
-        public static List<string> destinationFolders;
         public MainPage()
         {
             this.InitializeComponent();
@@ -40,49 +40,82 @@ namespace MultiSourceFileCopy
         {
             // start the copy operation
             // Call the CopyFiles method with the source file paths and destination folder
-            FileCopier.CopyFiles(sourceFiles.ToArray(), destinationFolders.ToString());
+            FileCopier.CopyFiles(sourceFiles.ToArray(), rightFileBrowser.PickSingleFolderAsync());
+        }
+
+        private async Task<List<string>> GetFolderContents()
+        {
+            var folderPicker = new FolderPicker();
+            folderPicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
+            folderPicker.FileTypeFilter.Add("*");
+
+            StorageFolder selectedFolder = await folderPicker.PickSingleFolderAsync();
+            if (selectedFolder != null)
+            {               
+
+                // Get the contents of the selected folder
+                var files = await selectedFolder.GetFilesAsync();
+
+                // Clear the current items in the ListView
+                leftFileBrowser.Items.Clear();
+
+                // Add the file names to the ListView
+                foreach (var file in files)
+                {
+                    sourceFiles.Add(file.Name);
+                }
+                return sourceFiles;
+            }
+            return sourceFiles;
         }
 
         private void Add_Source_1(object sender, RoutedEventArgs e)
         {
-            List<string> filesSource1 = new List<string>();
-            filesSource1 = AddFilesToSources().Result;
+            // Change the source box color to green
+            Source_1.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+            GetFolderContents();
         }
 
         private void Add_Source_2(object sender, RoutedEventArgs e)
         {
-            List<string> filesSource2 = new List<string>();
-            filesSource2 = AddFilesToSources().Result;
+            // Change the source box color to green
+            Source_2.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+            GetFolderContents();
         }
 
         private void Add_Source_3(object sender, RoutedEventArgs e)
         {
-            List<string> filesSource3 = new List<string>();
-            filesSource3 = AddFilesToSources().Result;
+            // Change the source box color to green
+            Source_3.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+            GetFolderContents();
         }
 
         private void Add_Source_4(object sender, RoutedEventArgs e)
         {
-            List<string> filesSource4 = new List<string>();
-            filesSource4 = AddFilesToSources().Result;
+            // Change the source box color to green
+            Source_4.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+            GetFolderContents();
         }
 
         private void Add_Source_5(object sender, RoutedEventArgs e)
         {
-            List<string> filesSource5 = new List<string>();
-            filesSource5 = AddFilesToSources().Result;
+            // Change the source box color to green
+            Source_5.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+            GetFolderContents();
         }
 
         private void Add_Source_6(object sender, RoutedEventArgs e)
         {
-            List<string> filesSource6 = new List<string>();
-            filesSource6 = AddFilesToSources().Result;
+            // Change the source box color to green
+            Source_6.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+            GetFolderContents();
         }
 
         private void Add_Source_7(object sender, RoutedEventArgs e)
         {
-            List<string> filesSource7 = new List<string>();
-            filesSource7 = AddFilesToSources().Result;
+            // Change the source box color to green
+            Source_7.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+            GetFolderContents();
         }
 
         private void Exit_Button(object sender, RoutedEventArgs e)
@@ -99,6 +132,8 @@ namespace MultiSourceFileCopy
         {
 
         }
+
+     
 
         private async Task<List<string>> AddFilesToSources()
         {

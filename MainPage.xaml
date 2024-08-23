@@ -6,22 +6,36 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="1258">
 
-    <Grid>
-        <Button Content="Button" Height="114" Margin="56,876,0,0" VerticalAlignment="Top" Width="159" Click="Add_Source_1"/>
-        <Button Content="Button" Height="114" Margin="220,876,0,0" VerticalAlignment="Top" Width="141" Click="Add_Source_2"/>
-        <Button Content="Button" Height="114" Margin="366,876,0,0" VerticalAlignment="Top" Width="170" RenderTransformOrigin="0.884,0.559" Click="Add_Source_3"/>
-        <Button Content="Button" Height="124" Margin="541,876,0,0" VerticalAlignment="Top" Width="159" Click="Add_Source_4"/>
-        <Button Content="Button" Height="124" Margin="705,876,0,0" VerticalAlignment="Top" Width="188" Click="Add_Source_5"/>
-        <Button Content="Button" Height="114" Margin="898,876,0,0" VerticalAlignment="Top" Width="177" Click="Add_Source_6"/>
-        <Button Content="Button" Height="114" Margin="1081,876,0,0" VerticalAlignment="Top" Width="173" RenderTransformOrigin="1.748,0.559" Click="Add_Source_7"/>
-        <Button Content="Button" Height="114" Margin="1336,876,0,0" VerticalAlignment="Top" Width="164" Click="Exit_Button"/>
-        <ListBox HorizontalAlignment="Left" Height="742" Margin="10,79,0,0" VerticalAlignment="Top" Width="690"/>
-        <ListBox HorizontalAlignment="Left" Height="741" Margin="856,81,0,0" VerticalAlignment="Top" Width="634"/>
-        <Button Content="Button" Height="109" Margin="706,304,0,0" VerticalAlignment="Top" Width="145" Click="Start_Copy"/>
-        <Button Content="Button" Height="105" Margin="705,451,0,0" VerticalAlignment="Top" Width="146" Click="Remove_Files"/>
-        <Button Content="Button" Height="90" Margin="705,619,0,0" VerticalAlignment="Top" Width="151" Click="Add_Files"/>
+        <Grid Margin="0,10,10,0">
+            <Button Content="Source_1" Name="Source_1" Height="114" Margin="10,876,0,0" VerticalAlignment="Top" Width="150" Background="Red" BorderBrush="Black" BorderThickness="2" Click="Add_Source_1"/>
+        <Button Content="Source_2" Name="Source_2" Height="114" Margin="165,876,0,0" VerticalAlignment="Top" Width="150" Background="Red" BorderBrush="Black" BorderThickness="2" Click="Add_Source_2"/>
+        <Button Content="Source_3" Name="Source_3" Height="114" Margin="320,876,0,0" VerticalAlignment="Top" Width="150" Background="Red" BorderBrush="Black" BorderThickness="2" Click="Add_Source_3"/>
+        <Button Content="Source_4" Name="Source_4" Height="114" Margin="475,876,0,0" VerticalAlignment="Top" Width="150" Background="Red" BorderBrush="Black" BorderThickness="2" Click="Add_Source_4"/>
+        <Button Content="Source_5" Name="Source_5" Height="114" Margin="630,876,0,0" VerticalAlignment="Top" Width="150" Background="Red" BorderBrush="Black" BorderThickness="2" Click="Add_Source_5"/>
+        <Button Content="Source_6" Name="Source_6" Height="114" Margin="785,876,0,0" VerticalAlignment="Top" Width="150" Background="Red" BorderBrush="Black" BorderThickness="2" Click="Add_Source_6"/>
+        <Button Content="Source_7" Name="Source_7" Height="114" Margin="940,876,0,0" VerticalAlignment="Top" Width="150" Background="Red" BorderBrush="Black" BorderThickness="2" Click="Add_Source_7"/>
+            <Button Content="Exit" Height="114" Margin="1095,876,0,0" VerticalAlignment="Top" Width="150" Background="LightBlue" BorderBrush="Black" BorderThickness="2" Click="Exit_Button"/>
 
-    </Grid>
+        <ListView x:Name="leftFileBrowser" HorizontalAlignment="Left" Height="861" Margin="10,10,0,0" VerticalAlignment="Top" Width="535">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView x:Name="rightFileBrowser" HorizontalAlignment="Left" Height="861" Margin="710,10,0,0" VerticalAlignment="Top" Width="535">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+            <Button x:Name="StartCopy" Content="Start Copy" Height="114" Margin="550,10,0,0" VerticalAlignment="Top" Width="155" Click="Start_Copy" BorderBrush="Black" BorderThickness="2" />
+            <Button x:Name="Remove" Content="Remove" Height="118" Margin="550,129,0,0" VerticalAlignment="Top" Width="155" BorderBrush="Black" BorderThickness="2" Click="Remove_Files"/>
+            <Button x:Name="Add Files" Content="Add Files" Height="112" Margin="550,252,0,0" VerticalAlignment="Top" Width="155" BorderBrush="Black" BorderThickness="2" Click="Add_Files"/>
+        </Grid>    
 </Page>
