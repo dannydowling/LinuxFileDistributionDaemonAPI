@@ -18,7 +18,7 @@
         <Button Content="Source_7" Name="Source_7" Height="114" Margin="940,876,0,0" VerticalAlignment="Top" Width="150" Background="Red" BorderBrush="Black" BorderThickness="2" Click="Add_Source_7"/>
             <Button Content="Exit" Height="114" Margin="1095,876,0,0" VerticalAlignment="Top" Width="150" Background="LightBlue" BorderBrush="Black" BorderThickness="2" Click="Exit_Button"/>
 
-        <ListView x:Name="leftFileBrowser" HorizontalAlignment="Left" Height="861" Margin="10,10,0,0" VerticalAlignment="Top" Width="535">
+        <ListView x:Name="leftFileBrowser" HorizontalAlignment="Left" Height="861" Margin="10,10,0,0" VerticalAlignment="Top" Width="535" SelectionMode="Multiple">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" />
@@ -26,7 +26,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <ListView x:Name="rightFileBrowser" HorizontalAlignment="Left" Height="861" Margin="710,10,0,0" VerticalAlignment="Top" Width="535">
+        <ListView x:Name="rightFileBrowser" HorizontalAlignment="Left" Height="861" Margin="710,10,0,0" VerticalAlignment="Top" Width="535" SelectionMode="Multiple" ItemsSource="SelectedFilesCollection">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" />
@@ -35,7 +35,7 @@
         </ListView>
 
             <Button x:Name="StartCopy" Content="Start Copy" Height="114" Margin="550,10,0,0" VerticalAlignment="Top" Width="155" Click="Start_Copy" BorderBrush="Black" BorderThickness="2" />
-            <Button x:Name="Remove" Content="Remove" Height="118" Margin="550,129,0,0" VerticalAlignment="Top" Width="155" BorderBrush="Black" BorderThickness="2" Click="Remove_Files"/>
-            <Button x:Name="Add Files" Content="Add Files" Height="112" Margin="550,252,0,0" VerticalAlignment="Top" Width="155" BorderBrush="Black" BorderThickness="2" Click="Add_Files"/>
+            <Button x:Name="Remove_Files" Content="Remove" Height="118" Margin="550,129,0,0" VerticalAlignment="Top" Width="155" BorderBrush="Black" BorderThickness="2" Click="Remove_Files_ButtonClick"/>
+            <Button x:Name="Add_Files" Content="Add Files" Height="112" Margin="550,252,0,0" VerticalAlignment="Top" Width="155" BorderBrush="Black" BorderThickness="2" Click="Add_Files_ButtonClick"/>
         </Grid>    
 </Page>

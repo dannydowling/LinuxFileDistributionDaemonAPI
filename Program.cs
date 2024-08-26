@@ -10,7 +10,7 @@ public class FileCopier
 {
     private const int PacketSize = 1024; // Set your desired packet size in bytes
 
-    public async static void CopyFiles(string[] sourceFilePaths, string destinationFolderPath)
+    public async static void CopyFiles(string[] sourceFilePaths, string[] destinationFolderPaths)
     {
         MeasureMedium measureMedium = new MeasureMedium();
         var orderedSources = measureMedium.orderSources(sourceFilePaths);
@@ -55,25 +55,29 @@ public class FileCopier
 
                               for (i = packetCountSource; i < packetCountSource; i--)
                               {
-                                  // Copy the packet to the destination file, cancel if timeout occurs
-
-                                  // Create a packet-sized buffer
-                                  byte[] buffer = new byte[PacketSize];
-
-                                  // Read a packet from the source file
-                                  int bytesRead = sourceStream.Read(buffer, 0, PacketSize);
-
-                                  // Create the destination file path for the current packet
-                                  string destinationFilePath = Path.Combine(destinationFolderPath, $"{fileName}_Part{i + 1}.dat");
-
-                                  // Write the packet to the destination file
-                                  using (FileStream destinationStream = new FileStream(destinationFilePath, FileMode.Create, FileAccess.Write))
+                                  for (int j = 0; j < destinationFolderPaths.Length; j++)
                                   {
-                                      destinationStream.Write(buffer, 0, bytesRead);
+
+                                      // Copy the packet to the destination file, cancel if timeout occurs
+
+                                      // Create a packet-sized buffer
+                                      byte[] buffer = new byte[PacketSize];
+
+                                      // Read a packet from the source file
+                                      int bytesRead = sourceStream.Read(buffer, 0, PacketSize);
+
+                                      // Create the destination file path for the current packet
+                                      string destinationFilePath = Path.Combine(destinationFolderPaths[j], $"{fileName}_Part{i + 1}.dat");
+
+                                      // Write the packet to the destination file
+                                      using (FileStream destinationStream = new FileStream(destinationFilePath, FileMode.Create, FileAccess.Write))
+                                      {
+                                          destinationStream.Write(buffer, 0, bytesRead);
+                                      }
+
+                                      //  Console.WriteLine($"Packet {i + 1} from '{fileName}' copied successfully.");
+
                                   }
-
-                                //  Console.WriteLine($"Packet {i + 1} from '{fileName}' copied successfully.");
-
                               }
                           }
                       }

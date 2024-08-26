@@ -10,11 +10,15 @@ public class MeasureMedium
     public long speed;
     public List<string> orderSources(string[] args)
     {
-        for (int i = 0; i < args.Length; i++)
+        if (sources != null)
         {
-            //create the file stream to each of the endpoints
-            FileStream myStream = new FileStream(args[i], FileMode.Open);
-            sources.Add(args[i], measure(myStream));
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                //create the file stream to each of the endpoints
+                FileStream myStream = new FileStream(args[i], FileMode.Open);
+                sources.Add(args[i], measure(myStream));
+            }
         }
         sources.OrderBy(x => sources.Values);
     return sources.Keys.ToList();
